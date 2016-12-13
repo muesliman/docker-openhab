@@ -1,16 +1,29 @@
 # Openhab 1.8.3
 # * configuration is injected
 #
-FROM java:openjdk-8-jdk
-MAINTAINER Tom Deckers <tom@ducbase.com>
-
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get -y update \
-  && apt-get -y upgrade \
-  && apt-get -y install unzip supervisor wget
+###############################################
+FROM ubuntu:16.04
+MAINTAINER muesliman
 
 ENV OPENHAB_VERSION 1.8.3
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN  apt-get -y update \
+  && apt-get -y install software-properties-common \
+  && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
+  && apt-add-repository ppa:webupd8team/java \
+  && apt-get -y update \
+  && apt-get -y install unzip supervisor wget \
+  && apt-get -y install oracle-java8-installer oracle-java8-set-default \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+  && rm -rf /var/cache/oracle-jdk8-installer
+
+ADD http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar /tmp/jython-installer-2.7.0.jar
+RUN java -jar /tmp/jython-installer-2.7.0.jar -d /opt/jython-2.7 -s -t all
+ENV PATH /opt/jython-2.7/bin:$PATH
+# bootstrap jython JAR cache
+RUN jython
 
 #
 # Download openHAB based on Environment OPENHAB_VERSION
@@ -18,11 +31,11 @@ ENV OPENHAB_VERSION 1.8.3
 COPY files/scripts/download_openhab.sh /root/
 RUN /root/download_openhab.sh
 
-COPY files/pipework /usr/local/bin/pipework
 COPY files/supervisord.conf /etc/supervisor/supervisord.conf
 COPY files/openhab.conf /etc/supervisor/conf.d/openhab.conf
 COPY files/openhab_debug.conf /etc/supervisor/conf.d/openhab_debug.conf
 COPY files/boot.sh /usr/local/bin/boot.sh
+COPY files/openhab.sh /usr/local/bin/openhab.sh
 COPY files/openhab-restart /etc/network/if-up.d/openhab-restart
 
 RUN mkdir -p /opt/openhab/logs
