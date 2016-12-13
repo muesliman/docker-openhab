@@ -27,4 +27,7 @@ wget --quiet --no-cookies -O /opt/openhab/addons-available/org.openhab.io.myopen
 mv /opt/openhab/configurations /etc/openhab
 ln -s /etc/openhab /opt/openhab/configurations
 
+mkdir /opt/openhab/lib
+ln -s /opt/jython-2.7/jython.jar /opt/openhab/lib/jython.jar
+
 rm -f /tmp/distribution-* /tmp/demo-openhab* /tmp/hyperic-sigar-*
