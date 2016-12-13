@@ -23,8 +23,8 @@ ADD http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2
 RUN java -jar /tmp/jython-installer-2.7.0.jar -d /opt/jython-2.7 -s -t all
 ENV PATH /opt/jython-2.7/bin:$PATH
 # bootstrap jython JAR cache
-RUN jython \\
-    && rm -rf /tmp/jython-installer-2.7.0.jar
+RUN jython 
+RUN rm -rf /tmp/jython-installer-2.7.0.jar
 
 #
 # Download openHAB based on Environment OPENHAB_VERSION
