@@ -8,5 +8,7 @@ basing on tdeckers/openhab
 
 
 TODO: 
-
-Set exec-flag for openhab.sh
+========
+* Set exec-flag for openhab.sh
+* Add org.openhab.core.jsr223 to default addons.cfg
+* Add logback.xml
