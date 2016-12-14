@@ -11,7 +11,7 @@ ENV PATH /opt/jython-2.7/bin:$PATH
 RUN jython 
 RUN rm -rf /tmp/jython-installer-2.7.0.jar
 
-RUN mkdir /opt/openhab/lib \
+RUN mkdir -p /opt/openhab/lib \
  && ln -s /opt/jython-2.7/jython.jar /opt/openhab/lib/jython.jar
 
 COPY files/openhab.sh /usr/local/bin/openhab.sh
