@@ -1,7 +1,7 @@
 # Openhab 1.8.3
 # * configuration is injected
 #
-FROM tdeckers/docker-openhab
+FROM tdeckers/openhab
 MAINTAINER muesliman
 
 ADD http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar /tmp/jython-installer-2.7.0.jar
