@@ -25,7 +25,7 @@ ENV PATH /opt/jython-2.7/bin:$PATH
 # bootstrap jython JAR cache
 RUN jython 
 RUN rm -rf /tmp/jython-installer-2.7.0.jar
-git co
+
 #
 # Download openHAB based on Environment OPENHAB_VERSION
 #
