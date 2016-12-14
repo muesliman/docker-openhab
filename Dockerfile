@@ -1,7 +1,6 @@
 # Openhab 1.8.3
 # * configuration is injected
 #
-###############################################
 FROM ubuntu:16.04
 MAINTAINER muesliman
 
@@ -19,13 +18,14 @@ RUN  apt-get -y update \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && rm -rf /var/cache/oracle-jdk8-installer
 
+
 ADD http://search.maven.org/remotecontent?filepath=org/python/jython-installer/2.7.0/jython-installer-2.7.0.jar /tmp/jython-installer-2.7.0.jar
 RUN java -jar /tmp/jython-installer-2.7.0.jar -d /opt/jython-2.7 -s -t all
 ENV PATH /opt/jython-2.7/bin:$PATH
 # bootstrap jython JAR cache
 RUN jython 
 RUN rm -rf /tmp/jython-installer-2.7.0.jar
-
+git co
 #
 # Download openHAB based on Environment OPENHAB_VERSION
 #
