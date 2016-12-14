@@ -30,6 +30,7 @@ exec java \
 	-Dequinox.scr.waitTimeOnBlock=60000 \
 	-Dfelix.fileinstall.active.level=4 \
 	-Djava.awt.headless=true \
-        -cp $classpath org.eclipse.equinox.launcher.Main $* \	
-        -jar ./server/plugins/org.eclipse.equinox.launcher_1.3.0.v20120522-1813.jar \
-        -console 5555
+	-cp $classpath org.eclipse.equinox.launcher.Main $* \	
+	-jar ./server/plugins/org.eclipse.equinox.launcher_1.3.0.v20120522-1813.jar \
+	-console 5555
+
