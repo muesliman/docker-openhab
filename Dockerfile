@@ -16,4 +16,19 @@ RUN mkdir -p /opt/openhab/lib \
 
 COPY files/openhab.sh /usr/local/bin/openhab.sh
 
+# try to make it SIP
+
+ADD https://github.com/tmakkonen/sipcmd/archive/master.zip /tmp/sipcmd.zip
+RUN  apt-get -y update \
+  && apt-get -y install libopal-dev libpt-dev alsa-base unzip build-essential
+  && apt-get clean \
+  && unzip /tmp/sipcmd.zip -d /tmp \
+  && cd /tmp/sipcmd-master
+RUN make \
+  && cp sipcmd /usr/bin/  \
+  && cd ~ \
+  && rm -rf /tmp/sipcmd-master \
+  && rm -f /tmp/sipcmd.zip 
+
+
 CMD ["/usr/local/bin/boot.sh"]
