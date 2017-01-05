@@ -19,7 +19,7 @@ COPY files/openhab.sh /usr/local/bin/openhab.sh
 
 RUN  apt-get -y update \
   && apt-get -y install openssh-client sshpass \
-  && echo -e 'Host *\nUseRoaming no' >> /etc/ssh/ssh_config \
+  && /bin/echo -e 'Host *\nUseRoaming no' >> /etc/ssh/ssh_config \
   && apt-get clean 
 
 # try to make it SIP
